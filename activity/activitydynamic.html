@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:blueviolet">
+    <h1 style="color:white; text-align:center;">
+        Dynamic Paragraph Styler
+    </h1>
+    <div class="container">
+        <div class="box" style="border: 1px solid; padding:4px; height:350px; border-radius:16px; margin-left:40%; margin-right:60%; background-color:rgb(240, 238, 237); width:20%;">
+            <h3 style="text-align:center;">
+                Customize Your Paragraph
+            </h3>
+            <p style="font-weight:bold;">Text color:</p>
+            <select id="textColor" style="width:100%; padding:5px; border-radius:5px;">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+            </select>
+            <p style="font-weight:bold;">Font Size:</p>
+            <select id="fontweight" style="width:100%; padding:5px; border-radius:5px;">
+                <option value="bold">Bold</option>
+                <option value="normal">normal</option>
+                <option value="lighter">Lighter</option>
+               
+            </select>
+            <p style="font-weight:bold;">Background-Color:</p>
+            <select id="textColor" style="width:100%; padding:5px; border-radius:5px;">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+            </select>
+            
+                <input type="Submit">
+        </div>
+    </div>
+    <textarea style="margin-top:15px; margin-left:40%; width:20%;border-radius:16px; font-family:'Courier New', Courier, monospace;" id="message" name="message" rows="4" placeholder="Enter Something " required></textarea>
+    <script>
+        document.getElementById("textColor").addEventListener("change", function() {
+            document.getElementById("message").style.color = this.value;
+        });
+
+            document.getElementById("fontweight").addEventListener("change", function() {
+                document.getElementById("message").style.fontweight = this.value;
+            });
+        
+    </script>
+</body>
+</html>

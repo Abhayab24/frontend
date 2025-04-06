@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layout</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap:10px;
+        }
+        .item{
+            background-color:rgb(31, 34, 33);
+            padding: 20px;
+            color:white;
+            text-align: center;
+        }
+        img:hover
+        {
+             border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item"><p>Watching Series</p>
+            <img src="download.jpg"></div>
+        <div class="item"><p>Sleeping</p><img src="download (1).jpg"></div>
+        <div class="item"><p>enjoying</p><img src="download.webp"></div>
+        <div class="item"></div>
+    </div>
+    
+</body>
+</html>

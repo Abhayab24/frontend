@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button{
+        padding:10px 20px;
+        background-color:blue;
+        color:white;
+        border:none;
+        cursor:pointer;
+        border-radius:8px;
+
+    }
+    button:hover{
+        background-color:darkblue;
+
+    }
+    <!-- button:focus{
+        outline:none;
+    }
+    button:active{
+        background-color:darkblue;
+    } -->
+    body{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        margin:0;
+        background-image: url('download.jpg');
+    }
+
+</style>
+<body >
+    <button id="togglebtn">Enable Event</button>
+    <script>
+        let toggleButton=document.getElementById("togglebtn");
+        let isEventActive=false;
+        function eventAction(){
+            alert("Event Triggered");
+        }
+        toggleButton.addEventListener("click",function(){
+            if(!isEventActive){
+                toggleButton.addEventListener("click",eventAction);
+                toggleButton.textContent="Disable Event";
+            }
+
+        else{
+            toggleButton.removeEventListener("click",eventAction);
+            toggleButton.textContent="Enable Event";
+        }
+        isEventActive=!isEventActive;
+            });
+    </script>
+</body>
+</html>

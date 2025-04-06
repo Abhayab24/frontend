@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:lightgray
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+          
+        }
+        .gallery img {
+            width: 60%;
+            height: auto;
+            border-radius: 12px;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index:1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border:4px solid white;
+            border-radius: 10px;
+        }
+        h1{
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Lightbox Thumbnails</h1>
+    <div class="gallery">
+        <img src="nature1.jpg" alt="Image 1">
+        <img src="nature2.jpg" alt="Image 2">
+        <img src="nature3.jpg" alt="Image 3">
+        <img src="nature4.jpg" alt="Image 4">
+        <img src="nature5.jpg" alt="Image 5">
+        <img src="nature6.jpg" alt="Image 6">
+        <img src="nature7.jpg" alt="Image 7">
+        <img src="nature8.jpg" alt="Image 8">
+    </div>
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Lightbox Image" id="Lightboximg">
+    </div>
+
+    <script>
+        const lightbox=document.getElementById('lightbox');
+        const lightboximg=document.getElementById('Lightboximg');
+        const thumbnails=document.querySelectorAll('.gallery img');
+        thumbnails.forEach(img=>{
+            img.addEventListener('click',()=>{
+                lightboximg.src=img.src;
+                lightbox.style.display='flex';
+            })
+        });
+        lightbox.addEventListener('click',(e)=>{
+            if(e.target!==lightboximg){
+                lightbox.style.display='none';
+            }
+        });
+        document.addEventListener('keydown',(e)=>{
+            if(e.key==='Escape'){
+                lightbox.style.display='none';
+            }
+        });
+    </script>
+</body>
+</html>

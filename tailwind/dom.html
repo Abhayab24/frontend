@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Event Handling & Image Gallery</title>
+    <style>
+        .thumb { width: 100px; cursor: pointer; margin: 5px; }
+        #main-image { width: 300px; display: block; margin-bottom: 10px; }
+        .highlight { color: red; }
+        .container { padding: 20px; border: 2px solid black; }
+    </style>
+</head>
+<body>
+    <h2 id="title">DOM Manipulation Example</h2>
+    <button id="changeTextBtn">Change Text</button>
+    <button id="toggleEventBtn">Toggle Click Event</button>
+    
+    <div id="parent" class="container">
+        Parent Div (Click Me)
+        <div id="child" class="container" style="background-color: lightgray;">Child Div (Click Me)</div>
+    </div>
+    
+    <h3>Image Gallery</h3>
+    <img id="main-image" src="download.jpg">
+    <div>
+        <img class="thumb" src="download.jpg">
+        <img class="thumb" src="cat.jpg">
+        <img class="thumb" src="download.jpg">
+    </div>
+    
+    <script>
+        // DOM Manipulation
+        document.getElementById("changeTextBtn").onclick = function() {
+            let title = document.getElementById("title");
+            title.innerHTML = "Text Changed!";
+            title.classList.toggle("highlight");
+        };
+
+        // addEventListener and removeEventListener
+        function showAlert() {
+            alert("Button Clicked!");
+        }
+        
+        let toggleEventBtn = document.getElementById("toggleEventBtn");
+        let isEventAdded = true;
+        
+        // ✅ Add the event when the page loads
+        toggleEventBtn.addEventListener("click", showAlert);
+        
+        toggleEventBtn.addEventListener("click", function() {
+            if (isEventAdded) {
+                toggleEventBtn.removeEventListener("click", showAlert);
+                toggleEventBtn.textContent = "Enable Click Event";
+            } else {
+                toggleEventBtn.addEventListener("click", showAlert);
+                toggleEventBtn.textContent = "Disable Click Event";
+            }
+            isEventAdded = !isEventAdded;
+        });
+        
+
+        // Event Bubbling
+        document.getElementById("parent").addEventListener("click", function() {
+            alert("Parent Clicked");
+        });
+        document.getElementById("child").addEventListener("click", function(event) {
+            alert("Child Clicked");
+            event.stopPropagation(); // Prevent bubbling
+        });
+
+        // Image Gallery with Thumbnails
+        let thumbnails = document.querySelectorAll(".thumb");
+        let mainImage = document.getElementById("main-image");
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener("click", function() {
+                mainImage.src = this.src;
+            });
+        });
+    </script>
+</body>
+</html>
