@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Clock with Motivation</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 100px;
+    }
+
+    #clock {
+      font-size: 50px;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      display: inline-block;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    #quote {
+      margin-top: 10px;
+      font-size: 18px;
+      font-style: italic;
+      color: #444;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .city {
+      margin: 10px;
+      padding: 8px;
+      background-color: #f0f0f0;
+      display: inline-block;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="clock" onmouseover="showQuote()" onmouseout="clearQuote()"></div>
+  <div id="quote"></div>
+
+  <button onclick="showCities()">Show Cities</button>
+  <div id="cities"></div>
+
+  <script>
+    // Update clock every second
+    setInterval(() => {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('clock').textContent = timeString;
+    }, 1000);
+
+    const quotes = [
+      "Believe in yourself.",
+      "Stay positive and happy.",
+      "Every day is a fresh start.",
+      "Push yourself, because no one else will.",
+      "You are capable of amazing things."
+    ];
+
+    function showQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.getElementById('quote').textContent = quotes[randomIndex];
+    }
+
+    function clearQuote() {
+      document.getElementById('quote').textContent = '';
+    }
+
+    function showCities() {
+      const cities = ["New York", "Tokyo", "London"];
+      const cityDiv = document.getElementById('cities');
+      cityDiv.innerHTML = ''; // clear previous
+      cities.forEach(city => {
+        const tag = document.createElement('span');
+        tag.className = 'city';
+        tag.textContent = city;
+        cityDiv.appendChild(tag);
+      });
+    }
+  </script>
+
+</body>
+</html>

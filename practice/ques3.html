@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Dropdown Menu</title>
+</head>
+<body>
+    <h1 style="text-align:center;">Dynamic Dropdown Menu</h1>
+
+    <!-- Input form -->
+    <div style="text-align:center;">
+        <form id="form">
+            <input type="text" id="input" placeholder="Enter option" style="width: 200px; padding: 5px; border-radius: 5px;">
+            <button type="submit" style="padding: 5px; border-radius: 5px;">Add Option</button>
+        </form>
+    </div>
+
+    <!-- Dropdown -->
+    <div style="text-align:center; margin-top: 20px;">
+        <select id="select" style="padding: 5px; border-radius: 5px;">
+            <option value="">Select an option</option>
+        </select>
+    </div>
+
+    <!-- Selected option display -->
+    <div id="don" style="text-align:center; margin-top: 20px; font-weight: bold;"></div>
+
+    <script>
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const select = document.getElementById('select');
+        const don = document.getElementById('don');
+
+        // Handle form submission to add new option
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const value = input.value.trim();
+            if (value) {
+                const option = document.createElement('option');
+                option.textContent = value;
+                option.value = value;
+                select.appendChild(option);
+                input.value = '';
+            } else {
+                alert("Please enter a valid option.");
+            }
+        });
+
+        // Handle dropdown selection change
+        select.addEventListener('change', () => {
+            const selected = select.value;
+            if (selected) {
+                don.textContent = `You selected: ${selected}`;
+            } else {
+                don.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

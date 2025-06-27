@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planation</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body class="bg-blue-600 h-screen">
     <div class="grid grid-cols-3 gap-4 h-64">
@@ -29,6 +30,38 @@
             }
         </style>
     
+    <!-- Character Counter Section -->
+    <div class="max-w-md mx-auto mt-8 p-4 bg-white rounded-lg shadow-lg">
+        <textarea id="textArea" class="w-full p-2 border rounded-lg" rows="4" maxlength="100" placeholder="Type something here..."></textarea>
+        <div class="mt-2">
+            <span id="charCount" class="text-gray-600">0</span>/<span id="charLimit">100</span> characters
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            const maxLength = 100;
+            const $textArea = $('#textArea');
+            const $charCount = $('#charCount');
+            const $charLimit = $('#charLimit');
+
+            $textArea.on('input', function() {
+                const currentLength = $(this).val().length;
+                const remaining = maxLength - currentLength;
+                
+                $charCount.text(currentLength);
+                
+                if (currentLength >= maxLength) {
+                    $charCount.css('color', 'red');
+                    if (currentLength === maxLength) {
+                        alert('Character limit reached!');
+                    }
+                } else {
+                    $charCount.css('color', 'gray');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
